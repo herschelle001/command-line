@@ -1,0 +1,211 @@
+herschelle@Macbook-Pro Part2 % make
+gcc mkdir.c -o mkdir
+gcc cat.c -o cat
+gcc list.c -o list
+gcc remove.c -o remove
+gcc date.c -o date
+gcc main.c
+herschelle@Macbook-Pro Part2 % ./a.out 
+Enter command: pwd
+    /Users/herschelle
+Enter command: echo this is my home directory
+this is my home directory
+ 
+Enter command: ls -1
+    Current Working Directory = /Users/herschelle
+    AndroidStudioProjects
+    Applications
+    CLionProjects
+    Desktop
+    Developer
+    Documents
+    Downloads
+    IdeaProjects
+    Library
+    Movies
+    Music
+    PhpstormProjects
+    Pictures
+    Public
+    PycharmProjects
+    Virtual Machines.localized
+    WebstormProjects
+    bin
+    venv
+
+Enter command: cd Desktop
+    /Users/herschelle/Desktop
+Enter command: ls -1
+    Current Working Directory = /Users/herschelle/Desktop
+    2019045_A1_OS
+    Books
+    Documentation.txt
+    Part2
+    Web Development
+
+Enter command: cat Documentation.txt -n
+    1      The following has been handled for all commands:
+    2      a) Error handled for invalid options.
+    3      b) Error handled for extra spaces added for command, options. 
+    4      1) cd command
+    5      Usage: cd [directory], cd [dir1/dir2/dir3...]
+    6      Features and Functionalities:
+    7      a) cd -L .. : Go to previous directory logically.
+    8      b) cd -P .. : Go to previous directory physically.
+    9      c) cd /  :  Change directory to the root directory.
+    10      d) cd ~  : 	Change directory to the home directory.
+    11      e) cd .. :  Move to the parent directory of current directory.
+    12      f) cd dir\ name : This command is used to navigate to a directory with white spaces
+    13      Defended against:
+    14      a) Handled the case if the directory has space in the name.
+    15      Eg say the directory's name is 'hello world'. To cd into the directory we type cd hello\ world.
+    16      b) Directory not present, I simple display a message that says failed to change directory.
+    17      c) Handled cd with -P, -L while simultaneously keeping track of logical path.
+    18      --------------------------------------------------------------
+    19      2) echo
+    20      Usage: echo message (without quotes)
+    21      Prints message to the console.
+    22      --------------------------------------------------------------
+    23      3) history command
+    24      Usage: history
+    25      Prints last 10 commands used.
+    26      Defended against:
+    27      a) Keeping track of last 10 enteries.
+    28      b) Not adding "history" when history command entered.
+    29      --------------------------------------------------------------
+    30      4) pwd command
+    31      Usage: pwd
+    32      Features and functionalities:
+    33      a) pwd -L : Prints the logical working directory.
+    34      b) pwd -P : Prints the physical working directory.
+    35      c) pwd    : Same as pwd -L.
+    36      Defended against:
+    37      a) Keeping track of logical path along with actual path.
+    38      --------------------------------------------------------------
+    39      5) exit command
+    40      Exits the program.
+    41      --------------------------------------------------------------
+    42      6) ls command 
+    43      Features and functionalities:
+    44      a) ls    : Display files in current directory
+    45      b) ls -a : To show all the hidden files in the directory.
+    46      c) ls -1 : Display one file per line.
+    47      d) Removed the '.', '..' from displaying as they aren't really directories.
+    48      Defended against:
+    49      In case any of the system, function call(exec, getcwd etc) fails, it is accompanied by a message, then prompting for new command.
+    50      --------------------------------------------------------------
+    51      7) cat command
+    52      Usage: cat [filename], eg cat hello.txt
+    53      Features and functionalities:
+    54      a) cat [name]    : Displays the content of the file.
+    55      b) cat [name] -n : Displays the content with line numbers.
+    56      c) cat [name] -E : Highlights the end of line.
+    57      d) cat [file1] > [file2] : Copies the content of file1 to file2.
+    58      Defended against:
+    59      In features part (c) if file2 doesn't exist, one is created with the name file2.
+    60      --------------------------------------------------------------
+    61      8) date command
+    62      Usage: date
+    63      Features and functionalities:
+    64      a) date	   : Displays system's local time
+    65      b) date -u : Displays Greenwich Mean Time
+    66      c) date -r [filename] : Displays the last time file was modified.
+    67      --------------------------------------------------------------
+    68      9) rm command:
+    69      Usage: rm [filename]
+    70      Features and functionalities:
+    71      a) rm file : Deletes the file.
+    72      b) rm -i file : Confirms from user before deletion.
+    73      c) rm -f dirname : With this flag even directory can be deleted.
+    74      d) rm file1 file2 file3 : Deletes all the mentioned files.
+    75      e) rm file\ name : Used to delete file with a white space in its name.
+    76      Defended against:
+    77      a) Handled the case if there is white space between the file name.
+    78      b) If file not present, message is displayed, then prompted for next command.
+    79      c) Check for directory, only delete if filename specified is not a directory.
+    80      d) If a directory is not empty, it is not deleted. (To not loose important data)
+    81      --------------------------------------------------------------
+    82      10) mkdir command:
+    83      Usage: mkdir [directoryname]
+    84      Features and functionalities:
+    85      a) mkdir dirname : Creates a directory of name 'dirname'.
+    86      b) mkdir dir1 dir2 dir3 : Creates all the mentioned directories.
+    87      c) mkdir -v dirname : Displays a message after creation.
+    88      d) mkdir dir\ name	: Creates a directory with a white space in its name.
+    89      Defended against:
+    90      a) Handled the case if there is white space between the directory name.
+    91      b) In case the program couldn't get the path, a message is displayed.
+Enter command: cd Books
+    /Users/herschelle/Desktop/Books
+Enter command: ls
+    Current Working Directory = /Users/herschelle/Desktop/Books
+    IdeaProjects      Sem1      Sem2      Sem3      herschelle  
+Enter command: echo I have made a syslink(shortcut) to home directory
+I have made a syslink(shortcut) to home directory
+ 
+Enter command: echo to show difference between logical and actual path
+to show difference between logical and actual path
+ 
+Enter command: cd herschelle
+    /Users/herschelle/Desktop/Books/herschelle
+Enter command: pwd -L
+    /Users/herschelle/Desktop/Books/herschelle
+Enter command: echo this is logical path
+this is logical path
+ 
+Enter command: pwd -P
+    /Users/herschelle
+Enter command: echo this is actual path
+this is actual path
+ 
+Enter command: cd -L ..
+    /Users/herschelle/Desktop/Books
+Enter command: echo logical dot-dot
+logical dot-dot
+ 
+Enter command: cd herschelle
+    /Users/herschelle/Desktop/Books/herschelle
+Enter command: cd -P ..
+    /Users
+Enter command: echo actual dot-dot operator
+actual dot-dot operator
+ 
+Enter command: pwd
+    /Users
+Enter command: cd herschelle/Desktop
+    /Users/herschelle/Desktop
+Enter command: mkdir hello\ world
+Enter command: ls
+    Current Working Directory = /Users/herschelle/Desktop
+    2019045_A1_OS      Books      Documentation.txt      Part2      Web Development      hello world  
+Enter command: rm -f hello\ world
+    hello world Deleted successfully
+Enter command: ls
+    Current Working Directory = /Users/herschelle/Desktop
+    2019045_A1_OS      Books      Documentation.txt      Part2      Web Development  
+Enter command: date -r Documentation.txt
+Last modified time: Wed Sep 30 20:39:21 2020
+Enter command: history
+    1 cd herschelle
+    2 cd -P ..
+    3 echo actual dot-dot operator
+    4 pwd
+    5 cd herschelle/Desktop
+    6 mkdir hello\ world
+    7 ls
+    8 rm -f hello\ world
+    9 ls
+    10 date -r Documentation.txt
+Enter command: mkdir -p hello/world
+    mkdir : created directory 'hello'
+    mkdir : created directory 'world'
+Enter command: ls
+    Current Working Directory = /Users/herschelle/Desktop
+    2019045_A1_OS      Books      Documentation.txt      Part2      Web Development      hello  
+Enter command: cd hello
+    /Users/herschelle/Desktop/hello
+Enter command: ls
+    Current Working Directory = /Users/herschelle/Desktop/hello
+    world  
+Enter command: exit
+herschelle@Macbook-Pro Part2 % 

@@ -1,0 +1,142 @@
+The following has been handled for all commands:
+a) Invalid options.
+b) Extra spaces added in command, options. 
+c) Bugs due to trailing \n.
+
+1) cd command
+
+Usage: cd [directory], cd [dir1/dir2/dir3...]
+
+Features and Functionalities:
+a) cd -L .. : Go to previous directory logically.
+b) cd -P .. : Go to previous directory physically.
+c) cd /  :  Change directory to the root directory.
+d) cd ~  : 	Change directory to the home directory.
+e) cd .. :  Move to the parent directory of current directory.
+f) cd dir\ name : This command is used to navigate to a directory with white spaces
+
+Defended against:
+a) Handled the case if the directory has space in the name.
+Eg say the directory's name is 'hello world'. To cd into the directory we type cd hello\ world.
+b) Directory not present, I simple display a message that says failed to change directory.
+c) Handled cd with -P, -L while simultaneously keeping track of logical path.
+
+--------------------------------------------------------------
+
+2) echo
+
+Usage: echo message (without quotes)
+
+Prints message to the console.
+
+--------------------------------------------------------------
+
+3) history command
+
+Usage: history
+
+Prints last 10 commands used.
+
+Defended against:
+a) Keeping track of last 10 enteries.
+b) Not adding "history" when history command entered.
+
+--------------------------------------------------------------
+
+4) pwd command
+
+Usage: pwd
+
+Features and functionalities:
+a) pwd -L : Prints the logical working directory.
+b) pwd -P : Prints the physical working directory.
+c) pwd    : Same as pwd -L.
+
+Defended against:
+a) Keeping track of logical path along with actual path.
+b) Logical dot-dot and actual dot-dot.
+
+--------------------------------------------------------------
+
+5) exit command
+
+Exits the program.
+
+--------------------------------------------------------------
+
+6) ls command 
+
+Features and functionalities:
+a) ls    : Display files in current directory
+b) ls -a : To show all the hidden files in the directory.
+c) ls -1 : Display one file per line.
+d) Removed the '.', '..' from displaying as they aren't really directories.
+
+Defended against:
+In case any of the system, function call(exec, getcwd etc) fails, it is accompanied by a message, then prompting for new command.
+
+--------------------------------------------------------------
+
+7) cat command
+
+Usage: cat [filename], eg cat hello.txt
+
+Features and functionalities: 
+a) cat [name]    : Displays the content of the file.
+b) cat [name] -n : Displays the content with line numbers. (Notice different syntax for flag)
+c) cat [name] -E : Highlights the end of line.
+d) cat [file1] > [file2] : Copies the content of file1 to file2.
+
+Defended against:
+a) In features part (c) if file2 doesn't exist, one is created with the name file2.
+b) If file1 doesn't exist error is displayed.
+
+--------------------------------------------------------------
+
+8) date command
+
+Usage: date
+
+Features and functionalities:
+a) date	   : Displays system's local time
+b) date -u : Displays Greenwich Mean Time
+c) date -r [filename] : Displays the last time file was modified.
+
+--------------------------------------------------------------
+
+9) rm command:
+
+Usage: rm [filename]
+
+Features and functionalities:
+a) rm file : Deletes the file.
+b) rm -i file : Confirms from user before deletion.
+c) rm -f dirname : With this flag even directory can be deleted.
+d) rm file1 file2 file3 : Deletes all the mentioned files.
+e) rm file\ name : Used to delete file with a white space in its name.
+
+Defended against:
+a) Handled the case if there is white space between the file name.
+b) If file not present, message is displayed, then prompted for next command.
+c) Check for directory, only delete if filename specified is not a directory.
+d) If a directory is not empty, it is not deleted. (To not loose important data)
+
+--------------------------------------------------------------
+
+10) mkdir command:
+
+Usage: mkdir [directoryname]
+
+Features and functionalities:
+a) mkdir dirname : Creates a directory of name 'dirname'.
+b) mkdir dir1 dir2 dir3 : Creates all the mentioned directories.
+c) mkdir -v dirname : Displays a message after creation.
+d) mkdir dir\ name	: Creates a directory with a white space in its name.
+
+Defended against:
+a) Handled the case if there is white space between the directory name.
+b) In case the program couldn't get the path, a message is displayed.
+
+
+
+
